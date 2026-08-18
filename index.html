@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#EDF0F5">
+<title>Vokabellinie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --papier:#EDF0F5;
+  --karte:#FFFFFF;
+  --tinte:#12161F;
+  --grau:#6E7788;
+  --linie:#2B34FF;
+  --signal:#FFC300;
+  --richtig:#0B8F5E;
+  --falsch:#D93A55;
+  --rand:#DCE1EA;
+  --schatten:0 1px 0 rgba(18,22,31,.04), 0 6px 20px -12px rgba(18,22,31,.35);
+  --display:"Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --body:"Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --mono:"Space Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --papier:#0E1118; --karte:#171C26; --tinte:#EDF0F5; --grau:#8B94A6;
+    --linie:#6C74FF; --signal:#FFC300; --richtig:#3BC48C; --falsch:#FF6B83;
+    --rand:#262D3A; --schatten:0 6px 24px -14px rgba(0,0,0,.8);
+  }
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--papier); color:var(--tinte);
+  font-family:var(--body); font-size:17px; line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+  padding:0 0 env(safe-area-inset-bottom);
+}
+#app{max-width:560px;margin:0 auto;padding:14px 18px 40px}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--signal);outline-offset:2px;border-radius:6px}
+
+.topbar{display:flex;align-items:center;gap:12px;min-height:44px;margin-bottom:18px}
+.zurueck{
+  border:1px solid var(--rand);background:var(--karte);color:var(--tinte);
+  width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:0 0 auto;
+  font-size:19px;line-height:1;
+}
+.marke{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-.02em}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grau);
+}
+
+.linie-wrap{position:relative;margin:0 0 22px;height:26px}
+.linie-schiene{position:absolute;left:5px;right:5px;top:11px;height:4px;border-radius:2px;background:var(--rand)}
+.linie-fortschritt{position:absolute;left:5px;top:11px;height:4px;border-radius:2px;background:var(--linie);transition:width .35s cubic-bezier(.2,.7,.3,1)}
+.linie-halte{position:relative;display:flex;justify-content:space-between;height:26px;align-items:center}
+.halt{width:11px;height:11px;border-radius:50%;background:var(--rand);flex:0 1 auto;min-width:5px;border:2px solid var(--papier);transition:all .25s ease}
+.halt.erledigt{background:var(--linie)}
+.halt.jetzt{width:20px;height:20px;min-width:20px;background:var(--signal);box-shadow:0 0 0 4px color-mix(in srgb, var(--signal) 28%, transparent)}
+.halt.falsch{background:var(--falsch)}
+
+.karte{background:var(--karte);border:1px solid var(--rand);border-radius:18px;box-shadow:var(--schatten)}
+.listenkarte{
+  width:100%;text-align:left;padding:16px 18px 14px;margin-bottom:12px;display:block;
+  border:1px solid var(--rand);background:var(--karte);border-radius:18px;
+  box-shadow:var(--schatten);color:inherit;transition:transform .12s ease;
+}
+.listenkarte:active{transform:scale(.985)}
+.listenkarte h3{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.02em;margin:2px 0 10px}
+.meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--grau)}
+.balken{height:4px;background:var(--rand);border-radius:2px;overflow:hidden;margin-top:10px}
+.balken i{display:block;height:100%;background:var(--linie);border-radius:2px}
+
+.knopf{
+  display:block;width:100%;padding:15px 18px;border-radius:14px;border:1px solid transparent;
+  background:var(--linie);color:#fff;font-weight:600;font-size:17px;text-align:center;
+  margin-bottom:10px;transition:transform .1s ease;
+}
+.knopf:active{transform:scale(.985)}
+.knopf.sekundaer{background:var(--karte);color:var(--tinte);border-color:var(--rand)}
+.knopf.gut{background:var(--richtig)}
+.knopf.schlecht{background:var(--falsch)}
+.reihe{display:flex;gap:10px;margin-bottom:10px}
+.reihe > *{flex:1;margin-bottom:0}
+
+.chips{display:flex;gap:8px;margin:6px 0 22px;flex-wrap:wrap}
+.chip{padding:8px 13px;border-radius:999px;border:1px solid var(--rand);background:var(--karte);color:var(--grau);font-size:14px;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--tinte);color:var(--papier);border-color:var(--tinte)}
+
+.buehne{min-height:190px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:28px 22px;margin-bottom:18px}
+.frage{font-family:var(--display);font-weight:800;font-size:clamp(28px,8.5vw,40px);letter-spacing:-.03em;line-height:1.12}
+.gram{font-family:var(--mono);font-size:13px;color:var(--grau);margin-top:8px;letter-spacing:.06em}
+.antwort{font-family:var(--display);font-weight:600;font-size:clamp(20px,5.5vw,26px);color:var(--linie);letter-spacing:-.02em;margin-top:16px;padding-top:16px;border-top:1px dashed var(--rand);width:100%}
+.antwort div + div{margin-top:4px}
+.hinweis{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--grau);margin-bottom:14px}
+input[type=text]{
+  width:100%;padding:14px 16px;font-size:19px;font-family:var(--body);
+  border:1px solid var(--rand);border-radius:14px;background:var(--karte);color:var(--tinte);
+  margin-bottom:9px;
+}
+.pruefliste{margin-bottom:14px}
+.pruefzeile{
+  display:flex;gap:11px;align-items:baseline;padding:11px 15px;border-radius:13px;
+  border:1px solid var(--rand);background:var(--karte);margin-bottom:8px;
+}
+.pruefzeile .zeichen{font-family:var(--mono);font-weight:700;flex:0 0 auto}
+.pruefzeile.ok{border-color:var(--richtig)}
+.pruefzeile.ok .zeichen{color:var(--richtig)}
+.pruefzeile.nein{border-color:var(--falsch)}
+.pruefzeile.nein .zeichen{color:var(--falsch)}
+.pruefzeile small{display:block;color:var(--grau);font-family:var(--mono);font-size:12px;margin-top:2px}
+.rueckmeldung{text-align:center;font-weight:600;margin:0 0 12px;min-height:24px}
+.rueckmeldung.ok{color:var(--richtig)}
+.rueckmeldung.nein{color:var(--falsch)}
+
+.ergebnis-zahl{font-family:var(--display);font-weight:800;font-size:64px;letter-spacing:-.04em;line-height:1;margin:8px 0 4px}
+
+.tabelle{border-top:1px solid var(--rand);margin-bottom:22px}
+.zeile{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;text-align:left;
+  background:none;border:none;border-bottom:1px solid var(--rand);
+  padding:12px 2px;color:inherit;align-items:start;line-height:1.35;
+}
+.zeile .b{color:var(--grau)}
+.zeile .gram-klein{font-family:var(--mono);font-size:11px;color:var(--grau);margin-left:5px}
+.zeile.sitzt{box-shadow:inset 3px 0 0 var(--linie);padding-left:11px}
+.zeile.sitzt .a{font-weight:600}
+.verdeckt{display:block;min-height:1.35em;border-bottom:1px dotted var(--grau);opacity:.45}
+
+.leer{text-align:center;color:var(--grau);padding:44px 14px}
+.leer p{margin:0 0 18px}
+textarea{width:100%;min-height:190px;padding:14px;border:1px solid var(--rand);border-radius:14px;font-family:var(--mono);font-size:14px;background:var(--karte);color:var(--tinte);margin-bottom:10px;line-height:1.6}
+label{display:block;font-weight:600;font-size:14px;margin:14px 0 6px}
+.fuss{margin-top:26px;text-align:center}
+.fuss button{background:none;border:none;color:var(--grau);font-size:14px;text-decoration:underline}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+"use strict";
+
+/* === KONFIG START === */
+const KONFIG = {
+  marke:      "Vokabellinie · Latein",
+  spracheA:   "Latein",
+  spracheB:   "Deutsch",
+  kuerzelA:   "LAT",
+  kuerzelB:   "DE",
+  richtungen: ["ab"],
+  modi:       ["karten", "schreiben"],
+  mehrfach:   true,
+  speicher:   "vokabellinie.lat.v1"
+};
+/* === KONFIG ENDE === */
+
+const APP = document.getElementById("app");
+let S = { listen: [], aktiv: null, richtung: KONFIG.richtungen[0], ansicht: "bibliothek",
+          sitzung: null, spalte: "beide", gezeigt: {} };
+
+/* ============ Daten ============ */
+function laden(){
+  let roh = [];
+  try { roh = JSON.parse(localStorage.getItem(KONFIG.speicher)) || []; } catch(e){ roh = []; }
+  roh.forEach(l => (l.woerter || []).forEach(w => {          // alte Listen mitnehmen
+    if (w.a === undefined){ w.a = w.en; w.b = [w.de]; delete w.en; delete w.de; }
+    if (!Array.isArray(w.b)) w.b = [w.b];
+  }));
+  S.listen = roh;
+}
+function sichern(){
+  try { localStorage.setItem(KONFIG.speicher, JSON.stringify(S.listen)); } catch(e){}
+}
+function idVon(titel, woerter){
+  let h = 0; const s = titel + "|" + woerter.map(w => w.a).join(",");
+  for (let i=0;i<s.length;i++){ h = (h*31 + s.charCodeAt(i)) | 0; }
+  return "l" + Math.abs(h).toString(36);
+}
+function listeAnlegen(titel, eintraege){
+  const woerter = eintraege.map(e => ({
+    a: e.a, b: Array.isArray(e.b) ? e.b : [e.b],
+    h: e.h || "", nk: e.nk ? 1 : 0, stufe: 0
+  }));
+  return { id: idVon(titel, woerter), titel, woerter, erstellt: Date.now() };
+}
+function hinzufuegen(liste){
+  const vorhanden = S.listen.find(l => l.id === liste.id);
+  if (vorhanden) return vorhanden;
+  S.listen.unshift(liste); sichern(); return liste;
+}
+const fortschritt = l => {
+  if (!l.woerter.length) return 0;
+  const ist = l.woerter.reduce((a,w) => a + Math.min(w.stufe||0, 3), 0);
+  return Math.round(ist / (l.woerter.length * 3) * 100);
+};
+
+/* ============ Link ============ */
+function kodieren(liste){
+  const kurz = { t: liste.titel, w: liste.woerter.map(w => {
+    const e = [w.a, w.b.length === 1 ? w.b[0] : w.b];
+    if (w.nk || w.h) e.push(w.nk ? 1 : 0);
+    if (w.h) e.push(w.h);
+    return e;
+  })};
+  const bytes = new TextEncoder().encode(JSON.stringify(kurz));
+  let bin = ""; bytes.forEach(b => bin += String.fromCharCode(b));
+  return btoa(bin).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+}
+function dekodieren(code){
+  const s = code.replace(/-/g,"+").replace(/_/g,"/");
+  const bytes = Uint8Array.from(atob(s), c => c.charCodeAt(0));
+  const o = JSON.parse(new TextDecoder().decode(bytes));
+  return listeAnlegen(o.t || "Neue Liste",
+    (o.w || []).map(e => ({ a:e[0], b:e[1], nk:e[2], h:e[3] })));
+}
+const linkVon = liste => location.origin + location.pathname + "#l=" + kodieren(liste);
+
+/* ============ Text einlesen ============ */
+function eintraegeAusText(text){
+  const raus = [];
+  text.split(/\r?\n/).forEach(zeile => {
+    const z = zeile.trim();
+    if (!z) return;
+    let teile = null;
+    for (const trenner of [/\t+/, /\s*=\s*/, /\s*;\s*/, /\s+[–—]\s+/, /\s+-\s+/, /\s{2,}/]){
+      const t = z.split(trenner);
+      if (t.length >= 2 && t[0].trim() && t.slice(1).join(" ").trim()){ teile = t; break; }
+    }
+    if (!teile) return;
+    const a = teile[0].trim(), rest = teile.slice(1).join(" ").trim();
+    raus.push({ a, b: KONFIG.mehrfach ? rest.split(/\s*,\s*/).filter(Boolean) : [rest] });
+  });
+  return raus;
+}
+
+/* ============ Antwort prüfen ============ */
+function normalisieren(s){
+  return String(s).toLowerCase()
+    .replace(/[.,!?;:'"´`()\[\]-]/g," ")
+    .replace(/[äàáâāă]/g,"a").replace(/[öòóôō]/g,"o").replace(/[üùúûū]/g,"u")
+    .replace(/[éèêëē]/g,"e").replace(/[ìíîī]/g,"i").replace(/ß/g,"ss")
+    .replace(/\s+/g," ").trim()
+    .replace(/^(to|the|a|an|der|die|das|ein|eine)\s+/,"");
+}
+function formen(s){
+  return [ normalisieren(String(s).replace(/\([^)]*\)/g," ")), normalisieren(s) ]
+         .filter((v,i,arr) => v && arr.indexOf(v) === i);
+}
+function alternativen(s){
+  if (KONFIG.mehrfach) return [s];              // jede Antwort zählt genau so, wie sie dasteht
+  const teile = []; let akt = "", tiefe = 0;
+  for (const c of String(s)){
+    if (c === "(") tiefe++;
+    else if (c === ")") tiefe = Math.max(0, tiefe - 1);
+    if (tiefe === 0 && (c === "," || c === ";" || c === "/")){ teile.push(akt); akt = ""; }
+    else akt += c;
+  }
+  teile.push(akt);
+  return teile;
+}
+function abstand(a,b){
+  const m = Array.from({length:a.length+1}, (_,i) => [i, ...Array(b.length).fill(0)]);
+  for (let j=0;j<=b.length;j++) m[0][j] = j;
+  for (let i=1;i<=a.length;i++)
+    for (let j=1;j<=b.length;j++)
+      m[i][j] = Math.min(m[i-1][j]+1, m[i][j-1]+1, m[i-1][j-1] + (a[i-1]===b[j-1]?0:1));
+  return m[a.length][b.length];
+}
+function pruefeAntwort(eingabe, loesung){          // "ok" | "fast" | "nein"
+  const eingaben = formen(eingabe);
+  if (!eingaben.length) return "nein";
+  const varianten = [];
+  alternativen(loesung).forEach(t => formen(t).forEach(v => { if (!varianten.includes(v)) varianten.push(v); }));
+  if (eingaben.some(e => varianten.includes(e))) return "ok";
+  if (eingaben.some(e => varianten.some(v => v.length >= 5 && abstand(e,v) === 1))) return "fast";
+  return "nein";
+}
+/* Mehrere Felder gegen mehrere Lösungen, Reihenfolge egal. */
+function pruefeAlle(eingaben, loesungen){
+  const offen = loesungen.map((l,i) => i);
+  const treffer = eingaben.map(() => null);
+  ["ok","fast"].forEach(stufe => {
+    eingaben.forEach((eing,i) => {
+      if (treffer[i]) return;
+      const j = offen.find(k => pruefeAntwort(eing, loesungen[k]) === stufe);
+      if (j !== undefined){ treffer[i] = { stufe, loesung: j }; offen.splice(offen.indexOf(j),1); }
+    });
+  });
+  return { treffer, fehlend: offen, alleRichtig: offen.length === 0 };
+}
+
+/* ============ Sitzung ============ */
+function sitzungStarten(liste, modus){
+  const passend = liste.woerter.filter(w => !(modus === "schreiben" && w.nk));
+  if (!passend.length) return;
+  const auswahl = [...passend].sort(() => Math.random() - .5);   // ALLE Wörter der Liste
+  S.sitzung = { modus, liste, schlange: auswahl.map(w => ({ wort:w, wiederholung:false })),
+                pos:0, richtig:0, falsch:0, verlauf:[], aufgedeckt:false, geprueft:null, warte:false };
+  S.ansicht = "uebung";
+  zeichnen();
+}
+function richtungFuer(){
+  if (S.richtung === "gemischt") return Math.random() < .5 ? "ab" : "ba";
+  return S.richtung;
+}
+function weiter(){
+  const s = S.sitzung;
+  s.pos++; s.aufgedeckt = false; s.geprueft = null; s.warte = false; s.aktuelleRichtung = null;
+  S.ansicht = s.pos >= s.schlange.length ? "ergebnis" : "uebung";
+  zeichnen();
+}
+function bewerten(korrekt){
+  const s = S.sitzung, eintrag = s.schlange[s.pos], w = eintrag.wort;
+  if (korrekt){
+    s.richtig++;
+    if (!eintrag.wiederholung) w.stufe = Math.min(5, (w.stufe||0) + 1);
+  } else {
+    s.falsch++;
+    w.stufe = Math.max(0, (w.stufe||0) - 1);
+    if (!eintrag.wiederholung) s.schlange.push({ wort:w, wiederholung:true });
+  }
+  s.verlauf.push(korrekt);
+  sichern();
+  if (!korrekt && s.modus === "schreiben"){ s.warte = true; return zeichnen(); }
+  setTimeout(weiter, korrekt ? 620 : 1200);
+}
+
+/* ============ Ansichten ============ */
+function kopf(titel, zurueckZu){
+  return `<div class="topbar">
+    ${zurueckZu ? `<button class="zurueck" data-nav="${zurueckZu}" aria-label="Zurück">&#8592;</button>` : ""}
+    <div><div class="eyebrow">${escape_(KONFIG.marke)}</div><div class="marke">${titel}</div></div>
+  </div>`;
+}
+function escape_(s){
+  return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+}
+function zeichnen(){
+  APP.innerHTML = "";
+  if (S.ansicht === "bibliothek") bibliothek();
+  else if (S.ansicht === "liste")  listenansicht();
+  else if (S.ansicht === "alle")   alleWoerter();
+  else if (S.ansicht === "uebung") uebung();
+  else if (S.ansicht === "ergebnis") ergebnis();
+  else if (S.ansicht === "neu")    neueListe();
+  window.scrollTo(0,0);
+}
+
+function bibliothek(){
+  let h = kopf("Deine Listen", null);
+  if (!S.listen.length){
+    h += `<div class="leer"><p>Noch keine Liste da.<br>Öffne einen Link von Mama oder tippe eine Liste selbst ein.</p></div>`;
+  } else {
+    [...S.listen].sort((a,b) => (b.erstellt||0) - (a.erstellt||0)).forEach(l => {
+      const p = fortschritt(l);
+      const fertig = l.woerter.filter(w => (w.stufe||0) >= 3).length;
+      h += `<button class="listenkarte" data-liste="${l.id}">
+        <div class="meta">${l.woerter.length} Wörter · ${fertig} sitzen</div>
+        <h3>${escape_(l.titel)}</h3>
+        <div class="balken"><i style="width:${p}%"></i></div>
+      </button>`;
+    });
+  }
+  h += `<button class="knopf sekundaer" data-nav="neu" style="margin-top:14px">Neue Liste eintippen</button>`;
+  APP.innerHTML = h;
+}
+
+function listenansicht(){
+  const l = S.listen.find(x => x.id === S.aktiv);
+  if (!l){ S.ansicht = "bibliothek"; return zeichnen(); }
+  const p = fortschritt(l);
+  const halte = l.woerter.map(w => `<span class="halt ${(w.stufe||0) >= 3 ? "erledigt" : ""}"></span>`).join("");
+
+  const namen = { ab: `${KONFIG.kuerzelA} → ${KONFIG.kuerzelB}`,
+                  ba: `${KONFIG.kuerzelB} → ${KONFIG.kuerzelA}`, gemischt: "Gemischt" };
+  const richtungsWahl = KONFIG.richtungen.length > 1 ? `
+    <div class="eyebrow" style="margin-bottom:8px">Richtung</div>
+    <div class="chips">${KONFIG.richtungen.map(r =>
+      `<button class="chip" data-richtung="${r}" aria-pressed="${S.richtung===r}">${namen[r]}</button>`).join("")}
+    </div>` : "";
+
+  const modusNamen = { karten:"Karten", schreiben:"Schreiben", test:"Test" };
+  const modusKnoepfe = KONFIG.modi.map((m,i) =>
+    `<button class="knopf ${i ? "sekundaer" : ""}" data-modus="${m}">${modusNamen[m]}</button>`).join("");
+
+  APP.innerHTML = kopf(l.titel, "bibliothek") + `
+    <div class="linie-wrap">
+      <div class="linie-schiene"></div>
+      <div class="linie-fortschritt" style="width:calc(${p}% - 10px)"></div>
+      <div class="linie-halte">${halte}</div>
+    </div>
+    <div class="meta" style="margin-bottom:22px">${p}% gelernt · ${l.woerter.length} Wörter</div>
+    ${richtungsWahl}
+    ${modusKnoepfe}
+    <button class="knopf sekundaer" data-nav="alle" style="margin-top:14px">Alle Wörter ansehen</button>
+    <div class="fuss">
+      <button data-teilen="1">Link zu dieser Liste kopieren</button><br><br>
+      <button data-loeschen="1">Liste löschen</button>
+    </div>`;
+}
+
+function alleWoerter(){
+  const l = S.listen.find(x => x.id === S.aktiv);
+  if (!l){ S.ansicht = "bibliothek"; return zeichnen(); }
+  const sitzen = l.woerter.filter(w => (w.stufe||0) >= 3).length;
+  let h = kopf("Alle Wörter", "liste") + `
+    <div class="eyebrow" style="margin-bottom:8px">Spalte abdecken</div>
+    <div class="chips">
+      <button class="chip" data-spalte="beide" aria-pressed="${S.spalte==="beide"}">Beide zeigen</button>
+      <button class="chip" data-spalte="b" aria-pressed="${S.spalte==="b"}">${escape_(KONFIG.spracheB)} weg</button>
+      <button class="chip" data-spalte="a" aria-pressed="${S.spalte==="a"}">${escape_(KONFIG.spracheA)} weg</button>
+    </div>
+    <div class="meta" style="margin-bottom:12px">
+      ${l.woerter.length} Wörter · ${sitzen} sitzen${S.spalte==="beide" ? "" : " · zum Aufdecken antippen"}
+    </div>
+    <div class="tabelle">`;
+  l.woerter.forEach((w,i) => {
+    const zeigen = S.spalte === "beide" || S.gezeigt[i];
+    const seiteA = escape_(w.a) + (w.h ? `<span class="gram-klein">${escape_(w.h)}</span>` : "");
+    const seiteB = escape_(w.b.join(", "));
+    const feld = (inhalt, klasse, weg) => zeigen || !weg
+      ? `<span class="${klasse}">${inhalt}</span>`
+      : `<span class="${klasse} verdeckt"></span>`;
+    h += `<button class="zeile ${(w.stufe||0) >= 3 ? "sitzt" : ""}" data-zeile="${i}">
+      ${feld(seiteA, "a", S.spalte === "a")}
+      ${feld(seiteB, "b", S.spalte === "b")}
+    </button>`;
+  });
+  h += `</div><button class="knopf sekundaer" data-nav="liste">Zurück zum Üben</button>`;
+  APP.innerHTML = h;
+}
+
+function uebung(){
+  const s = S.sitzung, eintrag = s.schlange[s.pos], w = eintrag.wort;
+  if (!s.aktuelleRichtung) s.aktuelleRichtung = richtungFuer();
+  const vonA = s.aktuelleRichtung === "ab";
+  const frage = vonA ? w.a : w.b.join(", ");
+  const loesungen = vonA ? w.b : [w.a];
+  const gram = vonA && w.h ? `<div class="gram">${escape_(w.h)}</div>` : "";
+
+  const halte = s.schlange.map((e,i) => {
+    let k = "halt";
+    if (i < s.pos) k += s.verlauf[i] ? " erledigt" : " falsch";
+    if (i === s.pos) k += " jetzt";
+    return `<span class="${k}"></span>`;
+  }).join("");
+  const prozent = s.schlange.length > 1 ? s.pos / (s.schlange.length - 1) * 100 : 0;
+
+  let h = `<div class="topbar">
+      <button class="zurueck" data-nav="liste" aria-label="Übung beenden">&#10005;</button>
+      <div><div class="eyebrow">${s.modus === "karten" ? "Karten" : "Schreiben"}</div>
+      <div class="marke">${s.pos+1} / ${s.schlange.length}</div></div>
+    </div>
+    <div class="linie-wrap">
+      <div class="linie-schiene"></div>
+      <div class="linie-fortschritt" style="width:calc(${prozent}% - 10px)"></div>
+      <div class="linie-halte">${halte}</div>
+    </div>`;
+
+  if (s.modus === "karten"){
+    h += `<div class="karte buehne">
+      <div class="hinweis">${escape_(vonA ? KONFIG.spracheA : KONFIG.spracheB)}${eintrag.wiederholung ? " · nochmal" : ""}</div>
+      <div class="frage">${escape_(frage)}</div>${gram}
+      ${s.aufgedeckt ? `<div class="antwort">${loesungen.map(x => `<div>${escape_(x)}</div>`).join("")}</div>` : ""}
+    </div>`;
+    h += s.aufgedeckt
+      ? `<div class="reihe">
+           <button class="knopf schlecht" data-bewerten="0">Noch nicht</button>
+           <button class="knopf gut" data-bewerten="1">Gewusst</button>
+         </div>`
+      : `<button class="knopf" data-aufdecken="1">Antwort zeigen</button>`;
+  }
+
+  if (s.modus === "schreiben"){
+    const ziel = vonA ? KONFIG.spracheB : KONFIG.spracheA;
+    h += `<div class="karte buehne">
+      <div class="hinweis">Wie heißt das auf ${escape_(ziel)}?${eintrag.wiederholung ? " · nochmal" : ""}</div>
+      <div class="frage">${escape_(frage)}</div>${gram}
+      ${loesungen.length > 1 ? `<div class="gram">${loesungen.length} Antworten</div>` : ""}
+    </div>`;
+    if (!s.geprueft){
+      h += loesungen.map((_,i) =>
+        `<input type="text" id="feld${i}" data-feld="${i}" autocomplete="off" autocorrect="off"
+                autocapitalize="none" spellcheck="false"
+                placeholder="${loesungen.length > 1 ? (i+1) + ". Antwort" : escape_(ziel)}">`).join("");
+      h += `<button class="knopf" data-pruefen="1">Prüfen</button>`;
+    } else {
+      const r = s.geprueft;
+      h += `<div class="pruefliste">`;
+      r.treffer.forEach((t,i) => {
+        const eing = s.eingaben[i] || "";
+        if (t) h += `<div class="pruefzeile ok"><span class="zeichen">&#10003;</span>
+                       <span>${escape_(loesungen[t.loesung])}${t.stufe === "fast" ? `<small>getippt: ${escape_(eing)}</small>` : ""}</span></div>`;
+        else   h += `<div class="pruefzeile nein"><span class="zeichen">&#10007;</span>
+                       <span>${escape_(eing) || "<em>leer</em>"}</span></div>`;
+      });
+      r.fehlend.forEach(j => {
+        h += `<div class="pruefzeile nein"><span class="zeichen">&#8594;</span>
+                <span>${escape_(loesungen[j])}<small>gefehlt</small></span></div>`;
+      });
+      h += `</div>`;
+      h += r.alleRichtig
+        ? `<div class="rueckmeldung ok">Richtig</div>`
+        : `<button class="knopf" data-weiter="1">Weiter</button>`;
+    }
+  }
+
+  APP.innerHTML = h;
+  const erstes = document.getElementById("feld0");
+  if (erstes){
+    erstes.focus();
+    loesungen.forEach((_,i) => {
+      const f = document.getElementById("feld" + i);
+      f.addEventListener("keydown", e => {
+        if (e.key !== "Enter") return;
+        const naechstes = document.getElementById("feld" + (i+1));
+        if (naechstes) naechstes.focus(); else pruefenSchreiben();
+      });
+    });
+  }
+}
+
+function pruefenSchreiben(){
+  const s = S.sitzung, w = s.schlange[s.pos].wort;
+  const vonA = s.aktuelleRichtung === "ab";
+  const loesungen = vonA ? w.b : [w.a];
+  s.eingaben = loesungen.map((_,i) => (document.getElementById("feld" + i) || {}).value || "");
+  s.geprueft = pruefeAlle(s.eingaben, loesungen);
+  zeichnen();
+  bewerten(s.geprueft.alleRichtig);
+}
+
+function ergebnis(){
+  const s = S.sitzung, gesamt = s.richtig + s.falsch;
+  const quote = gesamt ? Math.round(s.richtig / gesamt * 100) : 0;
+  const l = s.liste, p = fortschritt(l);
+  APP.innerHTML = kopf("Fertig", "bibliothek") + `
+    <div class="karte buehne">
+      <div class="hinweis">Diese Runde</div>
+      <div class="ergebnis-zahl">${quote}%</div>
+      <div class="meta">${s.richtig} richtig · ${s.falsch} daneben</div>
+      <div class="antwort" style="color:var(--tinte);font-size:18px">
+        ${escape_(l.titel)} steht jetzt bei ${p}%
+      </div>
+    </div>
+    <button class="knopf" data-modus="${s.modus}">Noch eine Runde</button>
+    <button class="knopf sekundaer" data-nav="liste">Zurück zur Liste</button>`;
+}
+
+function neueListe(){
+  APP.innerHTML = kopf("Neue Liste", "bibliothek") + `
+    <label for="titel">Titel</label>
+    <input type="text" id="titel" placeholder="Lektion 2">
+    <label for="paste">Wörter – ein Paar pro Zeile</label>
+    <textarea id="paste" spellcheck="false" placeholder="${KONFIG.mehrfach
+      ? "forum = Marktplatz, Forum, Öffentlichkeit&#10;curia = Kurie, Rathaus"
+      : "to arrive = ankommen&#10;luggage = das Gepäck"}"></textarea>
+    <div class="meta" style="margin-bottom:16px">Trennzeichen: = oder Tab oder –${
+      KONFIG.mehrfach ? " · mehrere Übersetzungen mit Komma" : ""}</div>
+    <button class="knopf" data-speichern="1">Liste speichern</button>
+    <button class="knopf sekundaer" data-nav="bibliothek">Abbrechen</button>`;
+}
+
+/* ============ Klicks ============ */
+APP.addEventListener("click", e => {
+  const z = e.target.closest("[data-nav],[data-liste],[data-richtung],[data-spalte],[data-zeile],[data-modus],[data-aufdecken],[data-bewerten],[data-pruefen],[data-weiter],[data-teilen],[data-loeschen],[data-speichern]");
+  if (!z) return;
+  const d = z.dataset;
+
+  if (d.nav){ if (d.nav !== "alle") S.gezeigt = {}; S.ansicht = d.nav; return zeichnen(); }
+  if (d.liste){ S.aktiv = d.liste; S.ansicht = "liste"; return zeichnen(); }
+  if (d.richtung){ S.richtung = d.richtung; return zeichnen(); }
+  if (d.spalte){ S.spalte = d.spalte; S.gezeigt = {}; return zeichnen(); }
+  if (d.zeile !== undefined){
+    if (S.spalte === "beide") return;
+    S.gezeigt[d.zeile] = !S.gezeigt[d.zeile]; return zeichnen();
+  }
+  if (d.modus){
+    const l = S.listen.find(x => x.id === S.aktiv);
+    if (l && l.woerter.length) sitzungStarten(l, d.modus);
+    return;
+  }
+  if (d.aufdecken){ S.sitzung.aufgedeckt = true; return zeichnen(); }
+  if (d.bewerten !== undefined){ return bewerten(d.bewerten === "1"); }
+  if (d.pruefen){ return pruefenSchreiben(); }
+  if (d.weiter){ return weiter(); }
+
+  if (d.teilen){
+    const l = S.listen.find(x => x.id === S.aktiv);
+    const url = linkVon(l);
+    if (navigator.share) navigator.share({ title: l.titel, url });
+    else navigator.clipboard.writeText(url).then(() => { z.textContent = "Link kopiert"; });
+    return;
+  }
+  if (d.loeschen){
+    if (!confirm("Liste wirklich löschen?")) return;
+    S.listen = S.listen.filter(x => x.id !== S.aktiv);
+    sichern(); S.ansicht = "bibliothek"; return zeichnen();
+  }
+  if (d.speichern){
+    const titel = (document.getElementById("titel").value || "").trim() || "Ohne Titel";
+    const eintraege = eintraegeAusText(document.getElementById("paste").value);
+    if (!eintraege.length){ alert("Keine Wortpaare gefunden."); return; }
+    const l = hinzufuegen(listeAnlegen(titel, eintraege));
+    S.aktiv = l.id; S.ansicht = "liste"; return zeichnen();
+  }
+});
+
+/* ============ Start ============ */
+async function ausDatei(){
+  try {
+    const r = await fetch("zodziai.json", { cache: "no-cache" });
+    if (!r.ok) return;
+    const daten = await r.json();
+    const listen = Array.isArray(daten) ? daten : (daten.listen || []);
+    let neu = false;
+    listen.forEach(o => {
+      const eintraege = (o.woerter || o.w || []).map(w => Array.isArray(w)
+        ? { a:w[0], b:w[1], nk:w[2], h:w[3] }
+        : { a: w.a !== undefined ? w.a : w.en,
+            b: w.b !== undefined ? w.b : w.de,
+            h: w.hinweis || w.h || "", nk: w.nurKarten || w.nk });
+      if (!eintraege.length) return;
+      const l = listeAnlegen(o.titel || o.t || "Liste", eintraege);
+      if (!S.listen.some(x => x.id === l.id)){ S.listen.push(l); neu = true; }
+    });
+    if (neu){ sichern(); zeichnen(); }
+  } catch(e){}
+}
+function ausLink(){
+  const m = location.hash.match(/^#l=(.+)$/);
+  if (!m) return;
+  try {
+    const l = hinzufuegen(dekodieren(m[1]));
+    S.aktiv = l.id; S.ansicht = "liste";
+  } catch(e){}
+  history.replaceState(null, "", location.pathname);
+}
+
+laden();
+ausLink();
+zeichnen();
+ausDatei();
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
+</body>
+</html>

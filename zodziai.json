@@ -1,0 +1,178 @@
+{
+  "listen": [
+    {
+      "titel": "Lektion 1",
+      "woerter": [
+        {
+          "a": "senātor",
+          "h": "m.",
+          "b": [
+            "Senator"
+          ]
+        },
+        {
+          "a": "forum",
+          "h": "n.",
+          "b": [
+            "Marktplatz",
+            "Forum",
+            "Öffentlichkeit"
+          ]
+        },
+        {
+          "a": "curia",
+          "h": "f.",
+          "b": [
+            "Kurie",
+            "Rathaus"
+          ]
+        },
+        {
+          "a": "turba",
+          "h": "f.",
+          "b": [
+            "Menschenmenge",
+            "Lärm",
+            "Verwirrung"
+          ]
+        },
+        {
+          "a": "servus",
+          "h": "m.",
+          "b": [
+            "Sklave"
+          ]
+        },
+        {
+          "a": "serva",
+          "h": "f.",
+          "b": [
+            "Sklavin"
+          ]
+        },
+        {
+          "a": "properare",
+          "b": [
+            "eilen",
+            "sich beeilen"
+          ]
+        },
+        {
+          "a": "properat",
+          "b": [
+            "er/sie/es eilt",
+            "er/sie/es beeilt sich"
+          ]
+        },
+        {
+          "a": "esse",
+          "b": [
+            "sein"
+          ]
+        },
+        {
+          "a": "est",
+          "b": [
+            "er/sie/es ist"
+          ]
+        },
+        {
+          "a": "stāre",
+          "b": [
+            "stehen"
+          ]
+        },
+        {
+          "a": "stat",
+          "b": [
+            "er/sie/es steht"
+          ]
+        },
+        {
+          "a": "clāmāre",
+          "b": [
+            "laut rufen",
+            "schreien"
+          ]
+        },
+        {
+          "a": "clāmat",
+          "b": [
+            "er/sie/es ruft laut",
+            "er/sie/es schreit"
+          ]
+        },
+        {
+          "a": "gaudēre",
+          "b": [
+            "sich freuen"
+          ]
+        },
+        {
+          "a": "gaudet",
+          "b": [
+            "er/sie/es freut sich"
+          ]
+        },
+        {
+          "a": "adesse",
+          "b": [
+            "da sein"
+          ]
+        },
+        {
+          "a": "adest",
+          "b": [
+            "er/sie/es ist da"
+          ]
+        },
+        {
+          "a": "rogāre",
+          "b": [
+            "bitten",
+            "erbitten",
+            "fragen"
+          ]
+        },
+        {
+          "a": "rogat",
+          "b": [
+            "er/sie/es bittet"
+          ]
+        },
+        {
+          "a": "rīdēre",
+          "b": [
+            "lachen",
+            "auslachen"
+          ]
+        },
+        {
+          "a": "rīdet",
+          "b": [
+            "er/sie/es lacht",
+            "er/sie/es lacht aus"
+          ]
+        },
+        {
+          "a": "avē!",
+          "b": [
+            "sei gegrüßt!"
+          ]
+        },
+        {
+          "a": "salvē!",
+          "b": [
+            "sei gegrüßt!"
+          ]
+        },
+        {
+          "a": "salvēte!",
+          "b": [
+            "seid gegrüßt!"
+          ]
+        }
+      ]
+    }
+  ]
+}
