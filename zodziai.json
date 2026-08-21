@@ -51,7 +51,8 @@
           ]
         },
         {
-          "a": "properare",
+          "a": "properāre",
+          "h": "a-Konj.",
           "b": [
             "eilen",
             "sich beeilen"
@@ -59,6 +60,7 @@
         },
         {
           "a": "properat",
+          "h": "a-Konj.",
           "b": [
             "er/sie/es eilt",
             "er/sie/es beeilt sich"
@@ -78,18 +80,21 @@
         },
         {
           "a": "stāre",
+          "h": "a-Konj.",
           "b": [
             "stehen"
           ]
         },
         {
           "a": "stat",
+          "h": "a-Konj.",
           "b": [
             "er/sie/es steht"
           ]
         },
         {
           "a": "clāmāre",
+          "h": "a-Konj.",
           "b": [
             "laut rufen",
             "schreien"
@@ -97,6 +102,7 @@
         },
         {
           "a": "clāmat",
+          "h": "a-Konj.",
           "b": [
             "er/sie/es ruft laut",
             "er/sie/es schreit"
@@ -104,12 +110,14 @@
         },
         {
           "a": "gaudēre",
+          "h": "e-Konj.",
           "b": [
             "sich freuen"
           ]
         },
         {
           "a": "gaudet",
+          "h": "e-Konj.",
           "b": [
             "er/sie/es freut sich"
           ]
@@ -128,6 +136,7 @@
         },
         {
           "a": "rogāre",
+          "h": "a-Konj.",
           "b": [
             "bitten",
             "erbitten",
@@ -136,12 +145,16 @@
         },
         {
           "a": "rogat",
+          "h": "a-Konj.",
           "b": [
-            "er/sie/es bittet"
+            "er/sie/es bittet",
+            "er/sie/es erbittet",
+            "er/sie/es fragt"
           ]
         },
         {
           "a": "rīdēre",
+          "h": "e-Konj.",
           "b": [
             "lachen",
             "auslachen"
@@ -149,6 +162,7 @@
         },
         {
           "a": "rīdet",
+          "h": "e-Konj.",
           "b": [
             "er/sie/es lacht",
             "er/sie/es lacht aus"
@@ -156,20 +170,70 @@
         },
         {
           "a": "avē!",
+          "h": "e-Konj.",
           "b": [
             "sei gegrüßt!"
           ]
         },
         {
           "a": "salvē!",
+          "h": "e-Konj.",
           "b": [
             "sei gegrüßt!"
           ]
         },
         {
           "a": "salvēte!",
+          "h": "e-Konj.",
           "b": [
             "seid gegrüßt!"
+          ]
+        },
+        {
+          "a": "nam",
+          "b": [
+            "denn",
+            "nämlich"
+          ]
+        },
+        {
+          "a": "ibī",
+          "b": [
+            "dort"
+          ]
+        },
+        {
+          "a": "hīc",
+          "b": [
+            "hier"
+          ]
+        },
+        {
+          "a": "et",
+          "b": [
+            "und",
+            "auch"
+          ]
+        },
+        {
+          "a": "subitō",
+          "b": [
+            "plötzlich"
+          ]
+        },
+        {
+          "a": "ubī?",
+          "b": [
+            "wo?"
+          ]
+        },
+        {
+          "a": "tum",
+          "b": [
+            "da",
+            "damals",
+            "darauf",
+            "dann"
           ]
         }
       ]
