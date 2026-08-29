@@ -1,6 +1,94 @@
 {
   "listen": [
     {
+      "titel": "Lektion 2",
+      "woerter": [
+        {
+          "a": "hodiē",
+          "b": [
+            "heute"
+          ]
+        },
+        {
+          "a": "circus",
+          "h": "m.",
+          "g": "o-Dekl.",
+          "b": [
+            "Zirkus",
+            "Rennbahn"
+          ]
+        },
+        {
+          "a": "lūdus",
+          "h": "m.",
+          "g": "o-Dekl.",
+          "b": [
+            "Spiel",
+            "Wettkampf",
+            "Schule"
+          ]
+        },
+        {
+          "a": "sunt",
+          "h": "Inf.: esse",
+          "b": [
+            "sie sind"
+          ]
+        },
+        {
+          "a": "sed",
+          "b": [
+            "aber",
+            "sondern"
+          ]
+        },
+        {
+          "a": "amīcus",
+          "h": "m.",
+          "g": "o-Dekl.",
+          "b": [
+            "Freund"
+          ]
+        },
+        {
+          "a": "diū",
+          "b": [
+            "lange Zeit"
+          ]
+        },
+        {
+          "a": "exspectāre",
+          "g": "a-Konj.",
+          "b": [
+            "warten",
+            "erwarten"
+          ]
+        },
+        {
+          "a": "exspectat",
+          "g": "a-Konj.",
+          "b": [
+            "er/sie/es wartet",
+            "er/sie/es erwartet"
+          ]
+        },
+        {
+          "a": "tandem",
+          "b": [
+            "endlich"
+          ]
+        },
+        {
+          "a": "populus",
+          "h": "m.",
+          "g": "o-Dekl.",
+          "b": [
+            "Volk"
+          ]
+        }
+      ]
+    },
+    {
       "titel": "Lektion 1",
       "woerter": [
         {
