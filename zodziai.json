@@ -85,6 +85,82 @@
           "b": [
             "Volk"
           ]
+        },
+        {
+          "a": "etiam",
+          "b": [
+            "auch",
+            "sogar"
+          ]
+        },
+        {
+          "a": "nunc",
+          "b": [
+            "jetzt",
+            "nun"
+          ]
+        },
+        {
+          "a": "tacēre",
+          "g": "e-Konj.",
+          "b": [
+            "schweigen"
+          ]
+        },
+        {
+          "a": "tacet",
+          "g": "e-Konj.",
+          "b": [
+            "er/sie/es schweigt"
+          ]
+        },
+        {
+          "a": "porta",
+          "h": "f.",
+          "g": "a-Dekl.",
+          "b": [
+            "Tor"
+          ]
+        },
+        {
+          "a": "patēre",
+          "g": "e-Konj.",
+          "b": [
+            "offenstehen",
+            "sich erstrecken"
+          ]
+        },
+        {
+          "a": "patet",
+          "g": "e-Konj.",
+          "b": [
+            "er/sie/es steht offen",
+            "er/sie/es erstreckt sich"
+          ]
+        },
+        {
+          "a": "equus",
+          "h": "m.",
+          "g": "o-Dekl.",
+          "b": [
+            "Pferd"
+          ]
+        },
+        {
+          "a": "accēdere",
+          "g": "kons. Konj.",
+          "b": [
+            "herbeikommen",
+            "hinzukommen"
+          ]
+        },
+        {
+          "a": "accēdit",
+          "g": "kons. Konj.",
+          "b": [
+            "er/sie/es kommt herbei",
+            "er/sie/es kommt hinzu"
+          ]
         }
       ]
     },
