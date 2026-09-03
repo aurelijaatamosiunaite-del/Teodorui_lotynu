@@ -161,6 +161,111 @@
             "er/sie/es kommt herbei",
             "er/sie/es kommt hinzu"
           ]
+        },
+        {
+          "a": "denique",
+          "b": [
+            "schließlich",
+            "zuletzt"
+          ]
+        },
+        {
+          "a": "signum",
+          "h": "n.",
+          "g": "o-Dekl.",
+          "b": [
+            "Merkmal",
+            "Zeichen"
+          ]
+        },
+        {
+          "a": "dare",
+          "g": "a-Konj.",
+          "b": [
+            "geben"
+          ]
+        },
+        {
+          "a": "dat",
+          "g": "a-Konj.",
+          "b": [
+            "er/sie/es gibt"
+          ]
+        },
+        {
+          "a": "currere",
+          "g": "kons. Konj.",
+          "b": [
+            "eilen",
+            "laufen"
+          ]
+        },
+        {
+          "a": "currit",
+          "g": "kons. Konj.",
+          "b": [
+            "er/sie/es eilt",
+            "er/sie/es läuft"
+          ]
+        },
+        {
+          "a": "surgere",
+          "g": "kons. Konj.",
+          "b": [
+            "aufstehen",
+            "sich erheben"
+          ]
+        },
+        {
+          "a": "surgit",
+          "g": "kons. Konj.",
+          "b": [
+            "er/sie/es steht auf",
+            "er/sie/es erhebt sich"
+          ]
+        },
+        {
+          "a": "vocāre",
+          "g": "a-Konj.",
+          "b": [
+            "rufen",
+            "nennen"
+          ]
+        },
+        {
+          "a": "vocat",
+          "g": "a-Konj.",
+          "b": [
+            "er/sie/es ruft",
+            "er/sie/es nennt"
+          ]
+        },
+        {
+          "a": "victor",
+          "h": "m.",
+          "g": "kons. Dekl.",
+          "b": [
+            "Sieger"
+          ]
+        },
+        {
+          "a": "ecce",
+          "b": [
+            "schau!",
+            "schaut!",
+            "sieh da!",
+            "seht da!"
+          ]
+        },
+        {
+          "a": "praemium",
+          "h": "n.",
+          "g": "o-Dekl.",
+          "b": [
+            "Belohnung",
+            "Lohn",
+            "Siegespreis"
+          ]
         }
       ]
     },
