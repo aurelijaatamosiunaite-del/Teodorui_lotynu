@@ -1,6 +1,153 @@
 {
   "listen": [
     {
+      "titel": "Lektion 3",
+      "woerter": [
+        {
+          "a": "ad",
+          "b": [
+            "an",
+            "bei",
+            "nach",
+            "zu"
+          ]
+        },
+        {
+          "a": "per",
+          "b": [
+            "durch",
+            "hindurch"
+          ]
+        },
+        {
+          "a": "amica",
+          "h": "f.",
+          "g": "a-Dekl.",
+          "b": [
+            "Freundin"
+          ]
+        },
+        {
+          "a": "vidēre",
+          "g": "e-Konj.",
+          "b": [
+            "sehen",
+            "darauf achten"
+          ]
+        },
+        {
+          "a": "videt",
+          "g": "e-Konj.",
+          "b": [
+            "er/sie/es sieht",
+            "er/sie/es achtet darauf"
+          ]
+        },
+        {
+          "a": "petere",
+          "g": "kons. Konj.",
+          "b": [
+            "(auf) suchen",
+            "(er)streben",
+            "bitten",
+            "verlangen"
+          ]
+        },
+        {
+          "a": "petit",
+          "g": "kons. Konj.",
+          "b": [
+            "er/sie/es sucht auf",
+            "er/sie/es erstrebt",
+            "er/sie/es bittet",
+            "er/sie/es verlangt"
+          ]
+        },
+        {
+          "a": "templum",
+          "h": "n.",
+          "g": "o-Dekl.",
+          "b": [
+            "Tempel"
+          ]
+        },
+        {
+          "a": "aedificium",
+          "h": "n.",
+          "g": "o-Dekl.",
+          "b": [
+            "Gebäude"
+          ]
+        },
+        {
+          "a": "spectāre",
+          "g": "a-Konj.",
+          "b": [
+            "betrachten",
+            "hinsehen"
+          ]
+        },
+        {
+          "a": "spectat",
+          "g": "a-Konj.",
+          "b": [
+            "er/sie/es betrachtet",
+            "er/sie/es sieht hin"
+          ]
+        },
+        {
+          "a": "basilica",
+          "h": "f.",
+          "g": "a-Dekl.",
+          "b": [
+            "Basilika",
+            "Halle"
+          ]
+        },
+        {
+          "a": "intrāre",
+          "g": "a-Konj.",
+          "b": [
+            "betreten",
+            "eintreten"
+          ]
+        },
+        {
+          "a": "intrat",
+          "g": "a-Konj.",
+          "b": [
+            "er/sie/es betritt",
+            "er/sie/es tritt ein"
+          ]
+        },
+        {
+          "a": "mercātor, mercātōrem",
+          "h": "m.",
+          "g": "kons. Dekl.",
+          "b": [
+            "Kaufmann",
+            "Händler"
+          ]
+        },
+        {
+          "a": "contendere",
+          "g": "kons. Konj.",
+          "b": [
+            "eilen",
+            "sich anstrengen"
+          ]
+        },
+        {
+          "a": "contendit",
+          "g": "kons. Konj.",
+          "b": [
+            "er/sie/es eilt",
+            "er/sie/es strengt sich an"
+          ]
+        }
+      ]
+    },
+    {
       "titel": "Lektion 2",
       "woerter": [
         {

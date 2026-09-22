@@ -339,6 +339,17 @@ function pruefeKlasse(eingabe, loesung){
   return !!e && e === normKlasse(loesung);
 }
 
+/* Geschlecht: h zählt nur dann als abfragbares Feld, wenn es genau "m.", "f." oder
+   "n." ist – andere Hinweise in h (z.B. "Inf.: esse") bleiben reine Anzeige. */
+function istGeschlecht(h){
+  return /^(m|f|n)\.?$/i.test(String(h||"").trim());
+}
+function pruefeGeschlecht(eingabe, loesung){
+  const e = String(eingabe||"").trim().toLowerCase().replace(/[^a-zäöüß]/g,"");
+  const l = String(loesung||"").trim().toLowerCase().replace(/[^a-zäöüß]/g,"");
+  return !!e && !!l && e.charAt(0) === l.charAt(0);
+}
+
 /* Mehrere Felder gegen mehrere Lösungen, Reihenfolge egal. */
 function pruefeAlle(eingaben, loesungen){
   const offen = loesungen.map((l,i) => i);
@@ -371,6 +382,7 @@ function weiter(){
   const s = S.sitzung;
   s.pos++; s.aufgedeckt = false; s.geprueft = null; s.warte = false; s.aktuelleRichtung = null;
   s.klasseEingabe = ""; s.klasseRichtig = false;
+  s.geschlechtEingabe = ""; s.geschlechtRichtig = false;
   S.ansicht = s.pos >= s.schlange.length ? "ergebnis" : "uebung";
   zeichnen();
 }
@@ -510,7 +522,8 @@ function uebung(){
   const vonA = s.aktuelleRichtung === "ab";
   const frage = vonA ? w.a : w.b.join(", ");
   const loesungen = vonA ? w.b : [w.a];
-  const gram = vonA && w.h ? `<div class="gram">${escape_(w.h)}</div>` : "";
+  const geschlechtGefragt = vonA && istGeschlecht(w.h);
+  const gram = vonA && w.h && !geschlechtGefragt ? `<div class="gram">${escape_(w.h)}</div>` : "";
 
   const halte = s.schlange.map((e,i) => {
     let k = "halt";
@@ -536,6 +549,7 @@ function uebung(){
       <div class="hinweis">${escape_(vonA ? KONFIG.spracheA : KONFIG.spracheB)}${eintrag.wiederholung ? " · nochmal" : ""}</div>
       <div class="frage">${escape_(frage)}</div>${gram}
       ${s.aufgedeckt ? `<div class="antwort">${loesungen.map(x => `<div>${escape_(x)}</div>`).join("")}${
+        geschlechtGefragt ? `<div class="gram" style="margin-top:11px">${escape_(w.h)}</div>` : ""}${
         vonA && w.g ? `<div class="gram" style="margin-top:11px">${escape_(w.g)}</div>` : ""}</div>` : ""}
     </div>`;
     h += s.aufgedeckt
@@ -559,6 +573,10 @@ function uebung(){
         `<input type="text" id="feld${i}" data-feld="${i}" autocomplete="off" autocorrect="off"
                 autocapitalize="none" spellcheck="false"
                 placeholder="${loesungen.length > 1 ? (i+1) + ". Antwort" : escape_(ziel)}">`).join("");
+      if (geschlechtGefragt)
+        h += `<input type="text" id="feldH" autocomplete="off" autocorrect="off"
+                     autocapitalize="none" spellcheck="false"
+                     style="margin-top:5px" placeholder="m., f. oder n.">`;
       if (klasseGefragt)
         h += `<input type="text" id="feldK" autocomplete="off" autocorrect="off"
                      autocapitalize="none" spellcheck="false"
@@ -578,6 +596,14 @@ function uebung(){
         h += `<div class="pruefzeile nein"><span class="zeichen">&#8594;</span>
                 <span>${escape_(loesungen[j])}<small>gefehlt</small></span></div>`;
       });
+      if (geschlechtGefragt){
+        const eingH = s.geschlechtEingabe || "";
+        h += s.geschlechtRichtig
+          ? `<div class="pruefzeile ok"><span class="zeichen">&#10003;</span>
+               <span>${escape_(w.h)}</span></div>`
+          : `<div class="pruefzeile neutral"><span class="zeichen">&#8594;</span>
+               <span>${escape_(w.h)}<small>${eingH ? "getippt: " + escape_(eingH) + " · " : ""}zählt nicht als Fehler</small></span></div>`;
+      }
       if (klasseGefragt){
         const eingK = s.klasseEingabe || "";
         h += s.klasseRichtig
@@ -598,6 +624,8 @@ function uebung(){
   if (erstes){
     erstes.focus();
     const kette = loesungen.map((_,i) => document.getElementById("feld" + i));
+    const hFeld = document.getElementById("feldH");
+    if (hFeld) kette.push(hFeld);
     const kFeld = document.getElementById("feldK");
     if (kFeld) kette.push(kFeld);
     kette.forEach((f,i) => {
@@ -618,6 +646,8 @@ function pruefenSchreiben(){
   s.eingaben = loesungen.map((_,i) => (document.getElementById("feld" + i) || {}).value || "");
   s.klasseEingabe = ((document.getElementById("feldK") || {}).value || "").trim();
   s.klasseRichtig = vonA && w.g ? pruefeKlasse(s.klasseEingabe, w.g) : false;
+  s.geschlechtEingabe = ((document.getElementById("feldH") || {}).value || "").trim();
+  s.geschlechtRichtig = vonA && istGeschlecht(w.h) ? pruefeGeschlecht(s.geschlechtEingabe, w.h) : false;
   s.geprueft = pruefeAlle(s.eingaben, loesungen);
   zeichnen();
   bewerten(s.geprueft.alleRichtig);
