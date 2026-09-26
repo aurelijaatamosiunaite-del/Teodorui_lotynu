@@ -1,6 +1,197 @@
 {
   "listen": [
     {
+      "titel": "Lektion 3: zweite Liste",
+      "woerter": [
+        {
+          "a": "bēstia",
+          "h": "f.",
+          "g": "a-Dekl.",
+          "b": [
+            "Tier"
+          ]
+        },
+        {
+          "a": "vendere",
+          "g": "kons. Konj.",
+          "b": [
+            "verkaufen"
+          ]
+        },
+        {
+          "a": "vendit",
+          "g": "kons. Konj.",
+          "b": [
+            "er/sie/es verkauft"
+          ]
+        },
+        {
+          "a": "ante",
+          "h": "Präp. m. Akk.",
+          "b": [
+            "vor"
+          ]
+        },
+        {
+          "a": "taberna",
+          "h": "f.",
+          "g": "a-Dekl.",
+          "b": [
+            "Laden",
+            "Werkstatt",
+            "Gasthaus"
+          ]
+        },
+        {
+          "a": "statim",
+          "h": "Adv.",
+          "b": [
+            "auf der Stelle",
+            "sofort"
+          ]
+        },
+        {
+          "a": "in",
+          "h": "Präp. m. Akk. – wohin?",
+          "b": [
+            "in (... hinein)",
+            "nach (... hin)",
+            "gegen"
+          ]
+        },
+        {
+          "a": "dēlectāre",
+          "g": "a-Konj.",
+          "b": [
+            "erfreuen",
+            "unterhalten"
+          ]
+        },
+        {
+          "a": "dēlectat",
+          "g": "a-Konj.",
+          "b": [
+            "er/sie/es erfreut",
+            "er/sie/es unterhält"
+          ]
+        },
+        {
+          "a": "mulier, mulierem",
+          "h": "f.",
+          "g": "kons. Dekl.",
+          "b": [
+            "Frau"
+          ]
+        },
+        {
+          "a": "autem",
+          "h": "nachgestellt",
+          "b": [
+            "aber",
+            "andererseits"
+          ]
+        },
+        {
+          "a": "clāmor, clāmōrem",
+          "h": "m.",
+          "g": "kons. Dekl.",
+          "b": [
+            "Geschrei",
+            "Lärm"
+          ]
+        },
+        {
+          "a": "tollere",
+          "g": "kons. Konj.",
+          "b": [
+            "aufheben",
+            "in die Höhe heben",
+            "wegnehmen"
+          ]
+        },
+        {
+          "a": "tollit",
+          "g": "kons. Konj.",
+          "b": [
+            "er/sie/es hebt auf",
+            "er/sie/es hebt in die Höhe",
+            "er/sie/es nimmt weg"
+          ]
+        },
+        {
+          "a": "clāmōrem tollere",
+          "b": [
+            "ein Geschrei erheben"
+          ]
+        },
+        {
+          "a": "quid?",
+          "b": [
+            "was?"
+          ]
+        },
+        {
+          "a": "quis?",
+          "b": [
+            "wer?"
+          ]
+        },
+        {
+          "a": "itaque",
+          "h": "Adv.",
+          "b": [
+            "deshalb"
+          ]
+        },
+        {
+          "a": "relinquere",
+          "g": "kons. Konj.",
+          "b": [
+            "unbeachtet lassen",
+            "verlassen",
+            "zurücklassen"
+          ]
+        },
+        {
+          "a": "relinquit",
+          "g": "kons. Konj.",
+          "b": [
+            "er/sie/es lässt unbeachtet",
+            "er/sie/es verlässt",
+            "er/sie/es lässt zurück"
+          ]
+        },
+        {
+          "a": "cūr?",
+          "b": [
+            "warum?"
+          ]
+        },
+        {
+          "a": "apud",
+          "h": "Präp. m. Akk.",
+          "b": [
+            "bei",
+            "nahe bei"
+          ]
+        },
+        {
+          "a": "nōn",
+          "b": [
+            "nicht"
+          ]
+        },
+        {
+          "a": "iam",
+          "h": "Adv.",
+          "b": [
+            "schon",
+            "nun"
+          ]
+        }
+      ]
+    },
+    {
       "titel": "Lektion 3",
       "woerter": [
         {
