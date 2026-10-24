@@ -1,6 +1,210 @@
 {
   "listen": [
     {
+      "titel": "Lektion 3: Wiederholung",
+      "woerter": [
+        {
+          "a": "exspectāre",
+          "b": [
+            "warten",
+            "erwarten"
+          ],
+          "g": "a-Konj."
+        },
+        {
+          "a": "exspectat",
+          "b": [
+            "er/sie/es wartet",
+            "er/sie/es erwartet"
+          ],
+          "g": "a-Konj."
+        },
+        {
+          "a": "tum",
+          "b": [
+            "da",
+            "damals",
+            "darauf",
+            "dann"
+          ]
+        },
+        {
+          "a": "et",
+          "b": [
+            "und",
+            "auch"
+          ]
+        },
+        {
+          "a": "gaudēre",
+          "b": [
+            "sich freuen"
+          ],
+          "g": "e-Konj."
+        },
+        {
+          "a": "gaudet",
+          "b": [
+            "er/sie/es freut sich"
+          ],
+          "g": "e-Konj."
+        },
+        {
+          "a": "forum",
+          "h": "n.",
+          "g": "o-Dekl.",
+          "b": [
+            "Marktplatz",
+            "Forum",
+            "Öffentlichkeit"
+          ]
+        },
+        {
+          "a": "accēdere",
+          "b": [
+            "herbeikommen",
+            "hinzukommen"
+          ],
+          "g": "kons. Konj."
+        },
+        {
+          "a": "accēdit",
+          "b": [
+            "er/sie/es kommt herbei",
+            "er/sie/es kommt hinzu"
+          ],
+          "g": "kons. Konj."
+        },
+        {
+          "a": "properāre",
+          "b": [
+            "eilen",
+            "sich beeilen"
+          ],
+          "g": "a-Konj."
+        },
+        {
+          "a": "properat",
+          "b": [
+            "er/sie/es eilt",
+            "er/sie/es beeilt sich"
+          ],
+          "g": "a-Konj."
+        },
+        {
+          "a": "nam",
+          "b": [
+            "denn",
+            "nämlich"
+          ]
+        },
+        {
+          "a": "stāre",
+          "b": [
+            "stehen"
+          ],
+          "g": "a-Konj."
+        },
+        {
+          "a": "stat",
+          "b": [
+            "er/sie/es steht"
+          ],
+          "g": "a-Konj."
+        },
+        {
+          "a": "clāmāre",
+          "b": [
+            "laut rufen",
+            "schreien"
+          ],
+          "g": "a-Konj."
+        },
+        {
+          "a": "clāmat",
+          "b": [
+            "er/sie/es ruft laut",
+            "er/sie/es schreit"
+          ],
+          "g": "a-Konj."
+        },
+        {
+          "a": "hodiē",
+          "h": "Adv.",
+          "b": [
+            "heute"
+          ]
+        },
+        {
+          "a": "adesse",
+          "b": [
+            "da sein"
+          ]
+        },
+        {
+          "a": "adest",
+          "b": [
+            "er/sie/es ist da"
+          ]
+        },
+        {
+          "a": "etiam",
+          "b": [
+            "auch",
+            "sogar"
+          ]
+        },
+        {
+          "a": "subitō",
+          "b": [
+            "plötzlich"
+          ]
+        },
+        {
+          "a": "esse",
+          "b": [
+            "sein"
+          ]
+        },
+        {
+          "a": "est",
+          "b": [
+            "er/sie/es ist"
+          ]
+        },
+        {
+          "a": "nunc",
+          "h": "Adv.",
+          "b": [
+            "jetzt",
+            "nun"
+          ]
+        },
+        {
+          "a": "ubī?",
+          "b": [
+            "wo?"
+          ]
+        },
+        {
+          "a": "rīdēre",
+          "b": [
+            "lachen",
+            "auslachen"
+          ],
+          "g": "e-Konj."
+        },
+        {
+          "a": "rīdet",
+          "b": [
+            "er/sie/es lacht",
+            "er/sie/es lacht aus"
+          ],
+          "g": "e-Konj."
+        }
+      ]
+    },
+    {
       "titel": "Lektion 3: zweite Liste",
       "woerter": [
         {
