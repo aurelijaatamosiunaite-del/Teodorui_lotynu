@@ -1,6 +1,155 @@
 {
   "listen": [
     {
+      "titel": "Lektion 4",
+      "woerter": [
+        {
+          "a": "in",
+          "h": "Präp. m. Abl. – wo?",
+          "b": [
+            "in",
+            "an",
+            "auf",
+            "bei"
+          ]
+        },
+        {
+          "a": "cum",
+          "h": "Präp. m. Abl.",
+          "b": [
+            "mit",
+            "zusammen mit"
+          ]
+        },
+        {
+          "a": "thermae, thermās",
+          "h": "f.",
+          "g": "a-Dekl.",
+          "b": [
+            "Thermen",
+            "Badeanlage"
+          ]
+        },
+        {
+          "a": "vestis, vestem",
+          "h": "f.",
+          "g": "kons. Dekl.",
+          "b": [
+            "Kleid",
+            "Kleidung"
+          ]
+        },
+        {
+          "a": "dēpōnere",
+          "g": "kons. Konj.",
+          "b": [
+            "ablegen",
+            "niederlegen",
+            "aufgeben"
+          ]
+        },
+        {
+          "a": "dēpōnit",
+          "g": "kons. Konj.",
+          "b": [
+            "er/sie/es legt ab",
+            "er/sie/es legt nieder",
+            "er/sie/es gibt auf"
+          ]
+        },
+        {
+          "a": "dē",
+          "h": "Präp. m. Abl.",
+          "b": [
+            "von",
+            "von … her",
+            "über"
+          ]
+        },
+        {
+          "a": "cōgitāre",
+          "g": "a-Konj.",
+          "b": [
+            "denken",
+            "beabsichtigen"
+          ]
+        },
+        {
+          "a": "cōgitat",
+          "g": "a-Konj.",
+          "b": [
+            "er/sie/es denkt",
+            "er/sie/es beabsichtigt"
+          ]
+        },
+        {
+          "a": "cōgitāre dē",
+          "h": "m. Abl.",
+          "b": [
+            "denken an"
+          ]
+        },
+        {
+          "a": "amāre",
+          "g": "a-Konj.",
+          "b": [
+            "lieben",
+            "gern haben"
+          ]
+        },
+        {
+          "a": "amat",
+          "g": "a-Konj.",
+          "b": [
+            "er/sie/es liebt",
+            "er/sie/es hat gern"
+          ]
+        },
+        {
+          "a": "semper",
+          "h": "Adv.",
+          "b": [
+            "immer"
+          ]
+        },
+        {
+          "a": "dōnum",
+          "h": "n.",
+          "g": "o-Dekl.",
+          "b": [
+            "Geschenk"
+          ]
+        },
+        {
+          "a": "vult",
+          "b": [
+            "er/sie/es will"
+          ]
+        },
+        {
+          "a": "tamen",
+          "b": [
+            "dennoch",
+            "jedoch"
+          ]
+        },
+        {
+          "a": "laudāre",
+          "g": "a-Konj.",
+          "b": [
+            "loben"
+          ]
+        },
+        {
+          "a": "laudat",
+          "g": "a-Konj.",
+          "b": [
+            "er/sie/es lobt"
+          ]
+        }
+      ]
+    },
+    {
       "titel": "Lektion 3: Wiederholung",
       "woerter": [
         {
